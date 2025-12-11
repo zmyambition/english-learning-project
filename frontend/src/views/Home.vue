@@ -7,6 +7,10 @@ import WordLearn from './WordLearn.vue'
 import Test from './Test.vue'
 import ArticleList from './ArticleList.vue'
 import Blog from './Blog.vue'
+import { 
+  Search, BookOpen, Star, PenTool, 
+  Newspaper, MessageCircle, LogOut, RefreshCw 
+} from 'lucide-vue-next'
 const router = useRouter()
 
 // --- 状态数据 ---
@@ -143,20 +147,33 @@ const switchAccount = () => {
     <!-- 导航栏 -->
     <nav class="nav-bar">
       <div class="nav-links">
-        <!-- 注意：点击这些链接会改变 activeTab 的值 -->
-        <a :class="{ active: activeTab === 'learn' }" @click="activeTab = 'learn'">📖 单词学习</a>
-        <a :class="{ active: activeTab === 'notebook' }" @click="activeTab = 'notebook'">⭐ 生词本</a>
-        <a :class="{ active: activeTab === 'test' }" @click="activeTab = 'test'">📝 单词测试</a>
-        <a :class="{ active: activeTab === 'article' }" @click="activeTab = 'article'">📰 文章阅读</a>
-        <a :class="{ active: activeTab === 'blog' }" @click="activeTab = 'blog'">✍️ 博客分享</a>
+        <a :class="{ active: activeTab === 'learn' }" @click="activeTab = 'learn'">
+          <BookOpen :size="18" style="margin-right:4px; vertical-align:text-bottom"/> 单词学习
+        </a>
+        <a :class="{ active: activeTab === 'notebook' }" @click="activeTab = 'notebook'">
+          <Star :size="18" style="margin-right:4px; vertical-align:text-bottom"/> 生词本
+        </a>
+        <a :class="{ active: activeTab === 'test' }" @click="activeTab = 'test'">
+          <PenTool :size="18" style="margin-right:4px; vertical-align:text-bottom"/> 单词测试
+        </a>
+        <a :class="{ active: activeTab === 'article' }" @click="activeTab = 'article'">
+          <Newspaper :size="18" style="margin-right:4px; vertical-align:text-bottom"/> 文章阅读
+        </a>
+        <a :class="{ active: activeTab === 'blog' }" @click="activeTab = 'blog'">
+          <MessageCircle :size="18" style="margin-right:4px; vertical-align:text-bottom"/> 博客分享
+        </a>
       </div>
 
       <div class="user-profile" @mouseenter="showUserMenu = true" @mouseleave="showUserMenu = false">
         <div class="avatar">{{ user.username ? user.username.charAt(0).toUpperCase() : 'U' }}</div>
         <span class="username">{{ user.username }}</span>
         <div class="dropdown-menu" v-if="showUserMenu">
-          <div class="menu-item" @click="switchAccount">🔄 切换账号</div>
-          <div class="menu-item logout" @click="handleLogout">🚪 退出登录</div>
+          <div class="menu-item" @click="switchAccount">
+            <RefreshCw :size="14" style="margin-right:5px"/> 切换账号
+          </div>
+          <div class="menu-item logout" @click="handleLogout">
+            <LogOut :size="14" style="margin-right:5px"/> 退出登录
+          </div>
         </div>
       </div>
     </nav>

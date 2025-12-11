@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { getWordLibrary, addWordToNotebook } from '../api/index'
-
+import { Book, GraduationCap, Library, ArrowLeft, ArrowRight, Star } from 'lucide-vue-next'
 const props = defineProps(['user'])
 
 // --- 状态管理 ---
@@ -124,13 +124,19 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
       <h2 class="section-title">请选择学习词库</h2>
       <div class="category-grid">
         <div class="cat-card cet4" @click="selectCategory('CET4')">
-          <div class="icon">📘</div><h3>CET-4</h3><p>大学英语四级核心词汇</p>
+          <div class="icon-box"><Book :size="48" color="#667eea"/></div> <!-- 换图标 -->
+          <h3>CET-4</h3>
+          <p>大学英语四级核心词汇</p>
         </div>
         <div class="cat-card cet6" @click="selectCategory('CET6')">
-          <div class="icon">📙</div><h3>CET-6</h3><p>大学英语六级进阶词汇</p>
+          <div class="icon-box"><Library :size="48" color="#ed8936"/></div>
+          <h3>CET-6</h3>
+          <p>大学英语六级进阶词汇</p>
         </div>
         <div class="cat-card ky" @click="selectCategory('KY')">
-          <div class="icon">📕</div><h3>考研英语</h3><p>研究生入学考试必备</p>
+          <div class="icon-box"><GraduationCap :size="48" color="#f56565"/></div>
+          <h3>考研英语</h3>
+          <p>研究生入学考试必备</p>
         </div>
       </div>
     </div>
@@ -179,13 +185,15 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
       <!-- 底部：控制按钮 -->
       <div class="controls">
         <button class="nav-btn prev" @click="prevWord" :disabled="currentIndex === 0">
-          ⬅️ 上一个
+          <ArrowLeft :size="20" style="margin-right:5px"/> 上一个
         </button>
         
-        <button class="collect-circle" @click="handleCollect" title="加入生词本">⭐</button>
+        <button class="collect-circle" @click="handleCollect">
+          <Star :size="24" fill="white" />
+        </button>
         
         <button class="nav-btn next" @click="nextWord">
-          下一个 ➡️
+          下一个 <ArrowRight :size="20" style="margin-left:5px"/>
         </button>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { getTestWords } from '../api/index'
-
+import { Star, BookOpen, Layers, Trophy } from 'lucide-vue-next'
 const props = defineProps(['user'])
 
 // --- 状态 ---
@@ -112,25 +112,21 @@ const reset = () => {
       <div class="grid-box">
         <!-- 生词本入口 -->
         <div class="card notebook" @click="startTest('notebook')">
-          <div class="icon">⭐</div>
+          <div class="icon-box"><Star :size="40" color="#ecc94b" fill="#ecc94b"/></div>
           <h3>我的生词本</h3>
-          <p>攻克难关</p>
         </div>
         <!-- 词库入口 -->
         <div class="card cet4" @click="startTest('CET4')">
-          <div class="icon">📘</div>
+          <div class="icon-box"><BookOpen :size="40" color="#667eea"/></div>
           <h3>CET-4</h3>
-          <p>四级词汇</p>
         </div>
         <div class="card cet6" @click="startTest('CET6')">
-          <div class="icon">📙</div>
+          <div class="icon-box"><Layers :size="40" color="#ed8936"/></div>
           <h3>CET-6</h3>
-          <p>六级词汇</p>
         </div>
         <div class="card ky" @click="startTest('KY')">
-          <div class="icon">📕</div>
+          <div class="icon-box"><Trophy :size="40" color="#f56565"/></div>
           <h3>考研词汇</h3>
-          <p>高阶挑战</p>
         </div>
       </div>
       
