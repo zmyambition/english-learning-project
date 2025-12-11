@@ -239,4 +239,20 @@ onUnmounted(() => window.removeEventListener('keydown', handleKeydown))
 .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .collect-circle { width: 60px; height: 60px; border-radius: 50%; border: none; background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); color: white; font-size: 24px; cursor: pointer; box-shadow: 0 10px 20px rgba(253, 160, 133, 0.4); transition: transform 0.2s; display: flex; align-items: center; justify-content: center; }
 .collect-circle:hover { transform: scale(1.1) rotate(15deg); }
+@media (max-width: 768px) {
+  .grid-container, .word-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .word-card {
+    padding: 10px;
+  }
+  .flash-card {
+    height: 300px;
+    padding: 20px;
+  }
+  .word {
+    font-size: 32px;
+  }
+}
 </style>

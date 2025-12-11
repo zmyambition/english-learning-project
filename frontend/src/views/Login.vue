@@ -57,6 +57,7 @@ const handleSubmit = async () => {
 
 const titleText = computed(() => isLoginMode.value ? 'Welcome Back' : 'Create Account')
 const btnText = computed(() => isLoginMode.value ? '登 录' : '注 册')
+
 </script>
 
 <template>
@@ -213,5 +214,21 @@ const btnText = computed(() => isLoginMode.value ? '登 录' : '注 册')
   text-decoration: none;
   font-weight: bold;
   margin-left: 5px;
+}
+@media (max-width: 768px) {
+  /* 让盒子变窄，适应手机屏幕 */
+  .glass-box {
+    width: 85%; 
+    padding: 30px 20px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+  
+  /* 调整背景动画，减少手机性能消耗 */
+  .bg-animation {
+    animation-duration: 20s;
+  }
 }
 </style>

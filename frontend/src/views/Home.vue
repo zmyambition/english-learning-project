@@ -223,4 +223,54 @@ const switchAccount = () => {
 .content-area { flex: 1; padding: 40px; overflow-y: auto; display: flex; justify-content: center; align-items: flex-start; }
 .welcome-card { margin-top: 50px; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px); padding: 40px 60px; border-radius: 25px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(255,255,255,0.5); width: 600px; }
 .welcome-card h1 { color: #2c3e50; margin-bottom: 10px; }
+@media (max-width: 768px) {
+  .top-search-bar {
+    padding: 10px 15px;
+    height: auto;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .logo-area {
+    width: 100%;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .search-wrapper {
+    margin: 0;
+    width: 100%;
+  }
+  .nav-bar {
+    padding: 0 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+  }
+  .nav-bar::-webkit-scrollbar {
+    display: none; 
+  }
+  .nav-links {
+    gap: 10px;
+    padding-right: 20px;
+  }
+  .nav-links a {
+    white-space: nowrap;
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+  .user-profile {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+  .user-profile .username {
+    display: none;
+  }
+  .content-area {
+    padding: 15px;
+  }
+  .welcome-card {
+    width: 100%;
+    padding: 20px;
+  }
+}
 </style>

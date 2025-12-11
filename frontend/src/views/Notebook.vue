@@ -172,4 +172,20 @@ onMounted(() => {
   background: rgba(255,255,255,0.3);
   border-radius: 20px;
 }
+@media (max-width: 768px) {
+  .grid-container, .word-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .word-card {
+    padding: 10px;
+  }
+  .flash-card {
+    height: 300px;
+    padding: 20px;
+  }
+  .word {
+    font-size: 32px;
+  }
+}
 </style>

@@ -227,4 +227,15 @@ onMounted(() => {
 }
 
 .loading { text-align: center; color: #fff; }
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+  .detail-view {
+    padding: 20px;
+  }
+  .detail-title {
+    font-size: 24px;
+  }
+}
 </style>
