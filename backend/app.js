@@ -12,6 +12,13 @@ app.use('/api/auth', authRoutes);
 app.use('/api/word', wordRoutes);
 app.use('/api/article', articleRoutes);
 app.use('/api/blog', blogRoutes);
-app.listen(port, () => {
+/*app.listen(port, () => {
   console.log(`后端跑起来了: http://localhost:${port}`);
-});
+});*/
+if (require.main === module) {
+    app.listen(port, () => {
+        console.log(`后端服务器正在运行: http://localhost:${port}`);
+    });
+}
+
+module.exports = app;
