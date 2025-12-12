@@ -4,19 +4,15 @@ import axios from 'axios';
 // baseURL: 后端服务器地址。
 // 本地开发时通常用 localhost，部署上线时换成 Vercel 的域名。
 const api = axios.create({
-    // baseURL: 'http://localhost:3000/api', // 本地开发环境
-    baseURL: 'https://你的后端域名.vercel.app/api', // 线上生产环境
-    timeout: 10000 // 请求超时时间 (10秒)
+    baseURL: 'https://english-learning-backend-six.vercel.app/api',
+    timeout: 10000
 });
-
 // --- 2. API 接口定义 ---
-
 // [用户模块]
 // 注册新用户
 export const registerUser = (data) => api.post('/auth/register', data);
 // 用户登录
 export const loginUser = (data) => api.post('/auth/login', data);
-
 // [单词模块]
 // 查单词 (调用百度翻译)
 export const searchWord = (word) => api.get('/word/search', { params: { word } });
@@ -30,13 +26,12 @@ export const deleteNotebookWord = (id) => api.delete('/word/notebook', { data: {
 export const getWordLibrary = (category) => api.get('/word/library', { params: { category } });
 // 生成测试题目
 export const getTestWords = (source, userId) => api.get('/word/test-generate', { params: { source, userId } });
-
 // [文章模块]
 // 获取文章列表
 export const getArticleList = () => api.get('/article/list');
-// 获取文章详情
+// [文章模块]
+// 获取文章列表
 export const getArticleDetail = (id) => api.get('/article/detail', { params: { id } });
-
 // [博客模块]
 // 获取动态广场列表
 export const getBlogList = () => api.get('/blog/list');
@@ -48,5 +43,4 @@ export const deleteBlog = (blogId, userId) => api.delete('/blog/delete', { data:
 export const createComment = (data) => api.post('/blog/comment', data);
 // 删除评论
 export const deleteComment = (commentId, userId) => api.delete('/blog/comment', { data: { commentId, userId } });
-
 export default api;
