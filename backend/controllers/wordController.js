@@ -1,9 +1,13 @@
 const axios = require('axios');
-const md5 = require('md5');
-
+const md5 = require('md5');//用于签名加密
+//百度翻译API配置
 const BAIDU_APP_ID = '20251121002502740';
 const BAIDU_KEY = 'hb_RAyz4zolCBIi7J5Ja';
 
+/**
+ * 单词搜索功能
+ * 功能：接收前端单词，转发给百度翻译 API，返回结果
+ */
 exports.searchWord = async (req, res) => {
     const { word } = req.query;
 
@@ -19,10 +23,12 @@ exports.searchWord = async (req, res) => {
         });
     }
     try {
+        // 1. 生成百度 API 所需的签名 (Sign)
+        // 规则：appid + word + salt + key 的 MD5 值
         const salt = Math.random();
         const sign = md5(BAIDU_APP_ID + word + salt + BAIDU_KEY);
         
-        // 发送请求给百度
+        // 2. 发起请求
         const response = await axios.get('http://api.fanyi.baidu.com/api/trans/vip/translate', {
             params: {
                 q: word,
@@ -33,7 +39,7 @@ exports.searchWord = async (req, res) => {
                 sign: sign
             }
         });
-
+        // 3. 处理返回结果
         const data = response.data;
         
         if (data.error_code) {
@@ -54,7 +60,10 @@ exports.searchWord = async (req, res) => {
 
 const db = require('../config/db'); // 引入数据库连接
 
-// 新增：加入生词本
+/**
+ * 加入生词本
+ * 逻辑：利用数据库 UNIQUE 索引防止重复收藏
+ */
 exports.addToNotebook = async (req, res) => {
     const { userId, word, translation } = req.body;
 
@@ -78,7 +87,7 @@ exports.addToNotebook = async (req, res) => {
     }
 };
 
-// 新增：获取生词本列表
+
 exports.getNotebook = async (req, res) => {
     const { userId } = req.query; // 从 URL 参数获取
     try {
@@ -102,6 +111,10 @@ exports.deleteFromNotebook = async (req, res) => {
         res.status(500).json({ message: '删除失败' });
     }
 };
+/**
+ * 获取词库列表
+ * 功能：支持按分类筛选，并强制按字母顺序排序
+ */
 exports.getWordLibrary = async (req, res) => {
     const { category } = req.query;
     try {
@@ -112,7 +125,8 @@ exports.getWordLibrary = async (req, res) => {
             sql += ' WHERE category = ?';
             params.push(category);
         }
-        
+
+        // 核心：使用 LOWER() 函数确保排序忽略大小写，保证字典序正确
         sql += ' ORDER BY LOWER(word) ASC'; 
 
         const [rows] = await db.execute(sql, params);
@@ -123,6 +137,10 @@ exports.getWordLibrary = async (req, res) => {
     }
 };
 
+/**
+ * 生成测试题目
+ * 算法：使用 SQL 的 ORDER BY RAND() 随机抽取
+ */
 exports.getTestWords = async (req, res) => {
     const { source, userId } = req.query;
     
