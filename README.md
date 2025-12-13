@@ -61,7 +61,6 @@
 
 ## 5. 项目结构
 
-```text
 english-learning-project/
 ├── backend/                  # 后端工程目录
 │   ├── config/
